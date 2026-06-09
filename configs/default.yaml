@@ -1,0 +1,72 @@
+# KAN-Route default configuration
+
+# ── Paths ──────────────────────────────────────────────────────────────────────
+# Update these for your environment.
+# Kaggle paths shown by default.
+paths:
+  annotations: "/kaggle/input/datasets/awsaf49/coco-2017-dataset/coco2017/annotations/instances_val2017.json"
+  img_dir:     "/kaggle/input/datasets/awsaf49/coco-2017-dataset/coco2017/val2017"
+  out_dir:     "/kaggle/working/kan_route"
+
+# ── Dataset generation ─────────────────────────────────────────────────────────
+dataset:
+  max_images:      1000       # Max COCO images to use for query generation
+  image_batch:     12         # Images processed per batch (reduce to 4 if OOM)
+  gen_batch_size:  8          # Sequences per LLM generation call
+  max_new_tokens:  256
+  temperature:     0.2
+  top_p:           0.9
+
+# ── Paraphrase augmentation ────────────────────────────────────────────────────
+augmentation:
+  enabled:      true
+  batch_size:   16
+  temperature:  0.8           # Higher = more lexical diversity
+  max_samples:  null          # null = augment all samples
+
+# ── Embedding ─────────────────────────────────────────────────────────────────
+embedding:
+  text_model: "all-MiniLM-L6-v2"
+  clip_model: "ViT-B-32"
+  text_dim:   384
+  clip_dim:   512
+  input_dim:  896
+  batch_size: 512
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+model:
+  num_tools:    50
+  # KAN-Route
+  kan:
+    proj_dim:     48
+    hidden_dims:  [48]
+    num_grids:    4
+  # MLP Baseline
+  mlp:
+    proj_dim:     96
+    hidden_dims:  [64, 32]
+    dropout:      0.3
+
+# ── Training ──────────────────────────────────────────────────────────────────
+training:
+  seed:           42
+  batch_size:     256
+  num_workers:    2
+  split:          [0.70, 0.15, 0.15]
+  # KAN-specific (is_kan=True)
+  kan:
+    lr:           0.0005
+    epochs:       80
+    weight_decay: 0.0001
+  # MLP
+  mlp:
+    lr:           0.001
+    epochs:       60
+    weight_decay: 0.0001
+  label_smoothing: 0.05
+  grad_clip:       1.0
+
+# ── Evaluation / latency ──────────────────────────────────────────────────────
+evaluation:
+  n_warmup:   100
+  n_measure:  200
