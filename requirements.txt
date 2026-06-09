@@ -1,0 +1,34 @@
+# Core ML
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Embeddings
+sentence-transformers==2.7.0
+open_clip_torch==2.24.0
+
+# COCO
+pycocotools>=2.0.6
+
+# FastKAN (install from source)
+# pip install git+https://github.com/ZiyaoLi/fast-kan.git
+
+# Data
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.4.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Utilities
+tqdm
+Pillow
+requests
+pyyaml
+
+# Teacher LLMs (optional — only needed for dataset generation)
+transformers>=4.44.0
+accelerate>=0.33.0
+bitsandbytes>=0.43.0
+huggingface-hub>=0.24.0

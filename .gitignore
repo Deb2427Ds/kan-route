@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data & model artifacts (large files — not tracked in git)
+*.npy
+*.npz
+*.pt
+*.pth
+*.json
+!configs/*.yaml
+
+# Exception: keep assets (figures for README)
+!assets/*.png
+!assets/*.jpg
+!assets/*.md
+
+# Environments
+.env
+.venv
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kaggle
+/kaggle/
