@@ -17,13 +17,15 @@ KAN-Route is a lightweight, interpretable tool-orchestration framework for visua
 
 **16-tool benchmark (Gemini-2.5-Flash dataset, 5,008 samples)**
 
-| Model | Params | Top-1 | Top-3 | F1 Macro | Latency (ms) | Speedup |
-|---|---|---|---|---|---|---|
-| Kimi-K2 (zero-shot) | 1T | 98.40% | — | 0.8494 | 1,169.8 | — |
-| Qwen3-32B (zero-shot) | 32B | 98.40% | — | 0.8502 | 1,085.3 | — |
-| Llama-4-Maverick (zero-shot) | 400B | 95.60% | — | 0.9005 | 2,180.7 | — |
-| MLP Baseline | 64,066 | **99.40%** | 100% | 0.9941 | 0.176 | — |
-| **KAN-Route** | **63,840** | **99.00%** | **100%** | **0.9902** | **1.489** | **786×** |
+| Model                        | Params     | Top-1      | Top-3    | F1 Macro   | Latency (ms) | Speedup vs. KAN-Route |
+| ----------------------------- | ---------- | ---------- | -------- | ---------- | ------------ | ---------------------- |
+| Kimi-K2 (zero-shot)          | 1T         | 98.40%     | —        | 0.8494     | 1,169.8      | 786× slower            |
+| Qwen3-32B (zero-shot)        | 32B        | 98.40%     | —        | 0.8502     | 1,085.3      | 729× slower            |
+| Llama-4-Maverick (zero-shot) | 400B       | 95.60%     | —        | 0.9005     | 2,180.7      | 1,464× slower          |
+| Llama-3.3-70B (zero-shot)    | 70B        | 94.60%     | —        | 0.8280     | 2,127.6      | 1,429× slower          |
+| Mistral-7B (zero-shot)       | 7B         | 93.60%     | —        | 0.8185     | 406.3        | 273× slower            |
+| MLP Baseline                 | 64,066     | **99.40%** | 100%     | 0.9941     | 0.176        | 8.5× faster than KAN   |
+| **KAN-Route**                | **63,840** | **99.00%** | **100%** | **0.9902** | **1.489**    | **reference (1×)**     |
 
 **35-tool benchmark (open-weight teachers, Qwen+aug: 39,400 samples)**
 
